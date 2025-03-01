@@ -1,5 +1,4 @@
 
-
 import express from 'express';
 import connectDB from './config/db';
 import tenantRoutes from './routes/tenantRoutes';
