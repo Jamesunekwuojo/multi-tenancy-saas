@@ -1,8 +1,34 @@
 import express from 'express';
 import { createData, getData } from '../controllers/dataController';
-
 import { resolveTenant } from '../middleware/tenantMiddleware';
 
+/**
+ * @swagger
+ * /api/data:
+ *   get:
+ *     summary: Get data for the current tenant
+ *     responses:
+ *       200:
+ *         description: Data retrieved successfully
+ *   post:
+ *     summary: Create new data for the current tenant
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               key:
+ *                 type: string
+ *                 example: Data Key
+ *               value:
+ *                 type: string
+ *                 example: Data Value
+ *     responses:
+ *       201:
+ *         description: Data created successfully
+ */
 
 const router = express.Router();
 
