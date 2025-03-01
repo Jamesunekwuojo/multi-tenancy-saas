@@ -1,8 +1,9 @@
-const express = require('express');
-const connectDB = require('./config/db');
-const tenantRoutes = require('./routes/tenantRoutes');
-const dataRoutes = require('./routes/dataRoutes');
-const errorHandler = require('./utils/errorHandler');
+
+
+import express from 'express';
+import connectDB from './config/db';
+import tenantRoutes from './routes/tenantRoutes';
+import dataRoutes from './routes/dataRoutes';
 
 const app = express();
 app.use(express.json());
