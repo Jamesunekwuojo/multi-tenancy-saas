@@ -1,5 +1,5 @@
 import express from 'express';
-import { createTenant, getTenants } from '../controllers/tenantController';
+import { createTenant, getTenants } from '../controllers/tenantControllers.js';
 
 /**
  * @swagger

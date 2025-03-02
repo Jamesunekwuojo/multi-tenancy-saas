@@ -1,14 +1,20 @@
 import mongose from 'mongoose';
+import dotenv from 'dotenv';
+dotenv.config();
 
-export default connectDB = async () => {
+
+
+const connectDB = async () => {
     try {
-        await mongose.connect(process.env.MONGO_URI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useCreateIndex: true,
+        await mongose.connect(process.env.DATABASE_URL, {
+        // useNewUrlParser: true,
+        // useUnifiedTopology: true,
+        
         });
         console.log('Database connected');
     } catch (error) {
         console.log('Error: ', error.message);
     }
 }
+
+export default connectDB;

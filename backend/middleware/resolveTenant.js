@@ -1,3 +1,4 @@
+
 export const resolveTenant = async (req, res, next) => {
     const tenant = req.headers['x-tenant'];
     if (!tenant) {

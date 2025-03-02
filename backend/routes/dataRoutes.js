@@ -1,6 +1,6 @@
 import express from 'express';
-import { createData, getData } from '../controllers/dataController';
-import { resolveTenant } from '../middleware/tenantMiddleware';
+import { createData, getData } from '../controllers/dataController.js';
+import { resolveTenant } from '../middleware/resolveTenant.js';
 
 /**
  * @swagger

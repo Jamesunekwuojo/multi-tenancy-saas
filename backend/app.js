@@ -1,9 +1,9 @@
 
 import express from 'express';
-import connectDB from './config/db';
-import tenantRoutes from './routes/tenantRoutes';
-import dataRoutes from './routes/dataRoutes';
-import swaggerSetup from './swagger';
+import connectDB from './config/db.js';
+import tenantRoutes from './routes/tenantRoutes.js';
+import dataRoutes from './routes/dataRoutes.js';
+import swaggerSetup from './swagger.js';
 
 const app = express();
 app.use(express.json());

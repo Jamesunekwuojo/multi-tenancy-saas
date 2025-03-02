@@ -1,4 +1,4 @@
-import Tenant from "../models/tenantModel.js";
+import Tenant from "../models/Tenant.js";
 
 export const createTenant = async (req, res) => {
   try {

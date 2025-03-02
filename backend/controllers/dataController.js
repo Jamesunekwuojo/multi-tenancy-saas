@@ -1,4 +1,4 @@
-import TenantData from '../models/tenantDataModel.js';
+import TenantData from '../models/TenantData.js';
 
 
 export const createData = async (req, res) => {
