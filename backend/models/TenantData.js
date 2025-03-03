@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 
 
 export const tenantDataSchema = new mongoose.Schema({
-    tenant_id: { type: String, required: true },
+    tenantId: { type: String, required: true },
     data: { type: String, required: true },
     createdAt: { type: Date, default: Date.now },
 });
