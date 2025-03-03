@@ -1,19 +1,35 @@
-import Tenant from "../models/Tenant.js";
+// const prisma = require('../config/db');
+// const { getCache, setCache } = require('../services/cache');
+// const { NotFoundError, ValidationError } = require('../utils/errors');
 
-export const createTenant = async (req, res) => {
-  try {
+import prisma from "../config/db.js";
+const { getCache, setCache } = require('../services/cache.js');
+
+export const createTenant = async (req, res, next) => {
     const { name, subdomain } = req.body;
-    const tenant = new Tenant({ name, subdomain });
-    await tenant.save();
-    console.log("Tenant created", tenant);
-    res.status(201).json(tenant);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Server Error" });
-  }
+
+    try {
+        const tenant = await prisma.tenant.create({
+            data: { name, subdomain },
+        });
+        res.status(201).json(tenant);
+    } catch (err) {
+        next(err);
+    }
 };
 
-export const getTenants = async (req, res) => {
-  const tenants = await Tenant.find();
-  res.json(tenants);
+export const getTenants = async (req, res, next) => {
+    try {
+        const cachedTenants = await getCache('tenants');
+        if (cachedTenants) {
+            return res.json(cachedTenants);
+        }
+
+        const tenants = await prisma.tenant.findMany();
+        await setCache('tenants', tenants);
+        res.json(tenants);
+    } catch (err) {
+        next(err);
+    }
 };
+

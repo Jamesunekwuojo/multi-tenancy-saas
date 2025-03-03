@@ -1,15 +1,38 @@
-import TenantData from '../models/TenantData.js';
+// const prisma = require('../config/db');
+// const { getCache, setCache } = require('../services/cache');
+// const { NotFoundError, ValidationError } = require('../utils/errors');
 
+import prisma from "../config/db.js";
+import { getCache, setCache } from '../services/cache.js';
 
-export const createData = async (req, res) => {
+export const createData = async (req, res, next) => {
     const { data } = req.body;
-    const tenantData = new TenantData({ tenantId: req.tenantId, data });
-    await tenantData.save();
-    res.status(201).json(tenantData);
+
+    try {
+        const tenantData = await prisma.tenantData.create({
+            data: { tenantId: req.tenantId, data },
+        });
+        res.status(201).json(tenantData);
+    } catch (err) {
+        next(err);
+    }
 };
 
-export const getData = async (req, res) => {
-    const data = await TenantData.find({ tenantId: req.tenantId });
-    res.json(data);
+export const getData = async (req, res, next) => {
+    try {
+        const cacheKey = `tenantData:${req.tenantId}`;
+        const cachedData = await getCache(cacheKey);
+        if (cachedData) {
+            return res.json(cachedData);
+        }
+
+        const data = await prisma.tenantData.findMany({
+            where: { tenantId: req.tenantId },
+        });
+        await setCache(cacheKey, data);
+        res.json(data);
+    } catch (err) {
+        next(err);
+    }
 };
 
