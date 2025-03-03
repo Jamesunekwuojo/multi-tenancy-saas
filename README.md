@@ -1,4 +1,4 @@
-# Multi-Tenancy SaaS Backend
+# Multi-Tenancy SaaS Backend (Project at MPC)
 
 This is the backend for a **Multi-Tenancy SaaS (Software as a Service)** application. It provides APIs for managing tenants, tenant-specific data, and ensures data isolation and scalability using **MongoDB sharding** and **Redis caching**.
 
