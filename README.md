@@ -107,22 +107,23 @@ http://localhost:3000/api-docs
 ```
 
 ### API Endpoints
-Tenant Management
-Endpoint	Method	Description
-/api/tenants	POST	Create a new tenant.
-/api/tenants	GET	Get a list of all tenants.
-/api/tenants/:id	GET	Get details of a specific tenant.
-/api/tenants/:id	PUT	Update a specific tenant.
-/api/tenants/:id	DELETE	Delete a specific tenant.
+**Tenant Management**
+
+**Endpoint	   Method	     Description**
+`/api/tenants`	`POST`	`Create a new tenant.`
+`/api/tenants`	 `GET	`  `Get a list of all tenants.`
+`/api/tenants/:id` `GET`	 `Get details of a specific tenant.`
+`/api/tenants/:id` `PUT`	  `Update a specific tenant.`
+`/api/tenants/:id` `DELETE` `Delete a specific tenant.`
 
 
 ### Data Management
 **Endpoint**	**Method**	**Description**
-/api/data	POST	Create new tenant-specific data.
-/api/data	GET	Get all data for the current tenant.
-/api/data/:id	GET	Get specific data by ID.
-/api/data/:id	PUT	Update specific data by ID.
-/api/data/:id	DELETE	Delete specific data by ID.
+`/api/data`	`POST`	`Create new tenant-specific data.`
+`/api/data`	`GET`	`Get all data for the current tenant.`
+`/api/data/:id`	`GET`	`Get specific data by ID.`
+`/api/data/:id`	`PUT	Update specific data by ID.`
+`/api/data/:id`	`DELETE	Delete specific data by ID.`
 
 
 
