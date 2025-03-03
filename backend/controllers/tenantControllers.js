@@ -3,7 +3,7 @@
 // const { NotFoundError, ValidationError } = require('../utils/errors');
 
 import prisma from "../config/db.js";
-const { getCache, setCache } = require('../services/cache.js');
+import { getCache, setCache } from "../services/cache.js";
 
 export const createTenant = async (req, res, next) => {
     const { name, subdomain } = req.body;

@@ -1,4 +1,5 @@
-const { AppError } = require('../utils/errors');
+
+import { AppError } from "../utilis/error.js";
 
 const errorHandler = (err, req, res, next) => {
     console.error(err);

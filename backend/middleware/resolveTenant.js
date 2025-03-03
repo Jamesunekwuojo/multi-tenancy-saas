@@ -1,4 +1,4 @@
-import { prisma } from '../db/prismaClient';
+import Prism from "../config/db.js"
 
 
 const resolveTenant = async (req, res, next) => {
