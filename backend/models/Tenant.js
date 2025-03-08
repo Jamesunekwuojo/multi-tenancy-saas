@@ -6,9 +6,9 @@ const tenantSchema = new mongoose.Schema({
     required: true,
   },
   adminId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    type: String,
     required: true,
+  
   },
   subdomain: { type: String, required: true, unique: true },
   createdAt: { type: Date, default: Date.now },
