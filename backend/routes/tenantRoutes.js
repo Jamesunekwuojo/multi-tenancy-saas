@@ -1,5 +1,5 @@
-import express from 'express';
-import { createTenant, getTenants } from '../controllers/tenantControllers.js';
+import express from "express";
+import { createTenant, getTenants } from "../controllers/tenantControllers.js";
 
 /**
  * @swagger
@@ -20,6 +20,7 @@ import { createTenant, getTenants } from '../controllers/tenantControllers.js';
  *             properties:
  *               name:
  *                 type: string
+                 subdomain:type:string
  *                 example: Tenant Name
  *     responses:
  *       201:
@@ -27,7 +28,7 @@ import { createTenant, getTenants } from '../controllers/tenantControllers.js';
  */
 
 const router = express.Router();
-router.post('/', createTenant);
-router.get('/', getTenants);
+router.post("/", createTenant);
+router.get("/", getTenants);
 
 export default router;
