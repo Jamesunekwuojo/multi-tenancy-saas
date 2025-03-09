@@ -6,6 +6,8 @@ import dataRoutes from './routes/dataRoutes.js';
 import swaggerSetup from './swagger.js';
 import errorHandler  from './middleware/errorHandler.js';
 
+import adminRoutes from './routes/adminRoutes.js';
+
 
 const app = express();
 app.use(express.json());
@@ -19,6 +21,8 @@ app.get('/', (req, res) =>res.send('API is running...'))
 
 app.use('/api/tenants', tenantRoutes);
 app.use('/api/data', dataRoutes);
+
+app.use('/api/admin', adminRoutes);
 
 // Error handling
 app.use(errorHandler);

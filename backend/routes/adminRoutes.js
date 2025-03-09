@@ -1,10 +1,12 @@
 import express from 'express';
 
+import { createAdmin, loginAdmin } from '../controllers/adminController.js';
+
 router = express.Router();
 
-router.post('/admin/signup',)
+router.post('/signup', createAdmin);
 
-router.get('/admin/login',)
+router.get('/login', loginAdmin);
 
 router.get('/admin/logout',)
 
