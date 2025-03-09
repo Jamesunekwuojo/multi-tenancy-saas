@@ -6,7 +6,9 @@ const resolveAdmin = (req, res, next) => {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         req.adminId = decoded.adminId; // Extract adminId from JWT
         next();
-    } catch (ex) {
+    } catch (err) {
         res.status(400).json({ error: 'Invalid token.' });
     }
+
+    next();
 };

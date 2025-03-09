@@ -57,6 +57,7 @@ export const loginAdmin = async (req, res, next) => {
 
     res.json({ message: "Admin logged in successfully", token });
   } catch (err) {
+    console.log(err);
     next(err);
   }
 }
