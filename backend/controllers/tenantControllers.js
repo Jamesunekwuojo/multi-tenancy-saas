@@ -8,10 +8,15 @@ import { getCache, setCache } from "../services/cache.js";
 export const createTenant = async (req, res, next) => {
     const { name, subdomain } = req.body;
 
+    const adminId = req.adminId
+
+
+
     try {
         const tenant = await prisma.tenant.create({
-            data: { name, subdomain },
+            data: { name, subdomain, adminId },
         });
+        console.log("Tenant created");
         res.status(201).json(tenant);
     } catch (err) {
         next(err);

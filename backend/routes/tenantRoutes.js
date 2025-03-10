@@ -1,7 +1,8 @@
-import express from 'express';
-import { createTenant, getTenants } from '../controllers/tenantControllers.js';
+import express from "express";
+import { createTenant, getTenants } from "../controllers/tenantControllers.js";
 
 /**
+ /**
  * @swagger
  * /api/tenants:
  *   get:
@@ -20,14 +21,19 @@ import { createTenant, getTenants } from '../controllers/tenantControllers.js';
  *             properties:
  *               name:
  *                 type: string
- *                 example: Tenant Name
+ *                 example: "Tenant Name"
+ *               subdomain:
+ *                 type: string
+ *                 example: "tenant-subdomain"
  *     responses:
  *       201:
- *         description: Tenant created
+ *         description: Tenant created successfully
  */
 
+ 
+
 const router = express.Router();
-router.post('/', createTenant);
-router.get('/', getTenants);
+router.post("/", createTenant);
+router.get("/", getTenants);
 
 export default router;
