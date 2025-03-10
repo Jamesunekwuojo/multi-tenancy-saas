@@ -1,7 +1,9 @@
 import prisma from "../config/db.js";
 
 const JWT_SECRET = process.env.JWT_SECRET;
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
+
+import jwt from  "jsonwebtoken"
 
 export const createAdmin = async (req, res, next) => {
   const { name, email, password } = req.body;
@@ -46,6 +48,7 @@ export const loginAdmin = async (req, res, next) => {
     }
 
     const isMatch = await bcrypt.compare(password, admin.password);
+
     if (!isMatch) {
       return res.status(400).json({ error: "Invalid credentials" });
     }

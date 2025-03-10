@@ -12,3 +12,5 @@ const resolveAdmin = (req, res, next) => {
 
     next();
 };
+
+export default resolveAdmin;
