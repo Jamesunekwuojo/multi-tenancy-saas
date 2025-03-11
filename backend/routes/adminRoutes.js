@@ -12,7 +12,7 @@ router.post('/signup', createAdmin);
 
 router.get('/login', resolveAdmin, loginAdmin);
 
-router.get('/admin/logout', )
+router.get('/logout', )
 
 
 

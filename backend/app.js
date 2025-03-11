@@ -5,14 +5,17 @@ import tenantRoutes from './routes/tenantRoutes.js';
 import dataRoutes from './routes/dataRoutes.js';
 import swaggerSetup from './swagger.js';
 import errorHandler  from './middleware/errorHandler.js';
+import cors from 'cors';
 
 import adminRoutes from './routes/adminRoutes.js';
 
 
 const app = express();
 app.use(express.json());
-swaggerSetup(app);
+swaggerSetup(app); 
 
+
+app.use(cors({ origin: ['https://localhost:5173', ''], credentials: true,  }));
 // Connect to MongoDB
 // connectDB();
 
