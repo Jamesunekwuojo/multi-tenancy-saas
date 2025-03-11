@@ -13,20 +13,20 @@ services:
   # Shard Alpha Replica Set
   shard_alpha:
     image: mongo:6.0
-    command: ["mongod", "--shardsvr", "--replSet", "customShardAlpha", "--port", "27118"]
+    command: ["mongod", "--shardsvr", "--replSet", "customShardAlpha", "--port", "27116"]
     volumes:
       - shardalphadb:/data/db
     ports:
-      - "27118:27118"
+      - "27116:27116"
   
   # Shard Beta Replica Set
   shard_beta:
     image: mongo:6.0
-    command: ["mongod", "--shardsvr", "--replSet", "customShardBeta", "--port", "27120"]
+    command: ["mongod", "--shardsvr", "--replSet", "customShardBeta", "--port", "27115"]
     volumes:
       - shardbetadb:/data/db
     ports:
-      - "27120:27120"
+      - "27115:27115"
 
   # Mongos Router
   mongos:
@@ -38,10 +38,10 @@ services:
     command: [
       "mongos",
       "--configdb", "customConfigReplSet/configsvr:27119",
-      "--port", "27117"
+      "--port", "27114"
     ]
     ports:
-      - "27117:27117"
+      - "27114:27114"
     volumes:
       - mongosdb:/data/db
 
