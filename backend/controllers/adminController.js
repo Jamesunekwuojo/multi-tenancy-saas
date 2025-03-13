@@ -7,8 +7,11 @@ import jwt from "jsonwebtoken";
 
 export const createAdmin = async (req, res, next) => {
   const { name, email, password } = req.body;
+
+  console.log("Name, email", req.body);
+
   console.log("DATABASE_URL:", process.env.DATABASE_URL);
-  console.log("JWT_SECRET:", process.env.JWT_SECRET);
+
 
   try {
     // Check if the admin already exists
@@ -28,10 +31,14 @@ export const createAdmin = async (req, res, next) => {
       expiresIn: "1h",
     });
 
-    res.status(201).json({ message: "Admin registered successfully", token });
-  } catch (err) {
-    console.log(err.message);
-    next(err);
+    console.log("Admin registered succesfully")
+
+    res.status(201).json({ message: "Admin registered successfully", token, admin });
+
+  } catch (error) {
+   
+    console.log(error.message)
+    // next(err);
   }
 };
 
