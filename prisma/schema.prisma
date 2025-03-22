@@ -29,16 +29,9 @@ model Tenant {
     name      String
     subdomain String      @unique
     adminId   String
+    data      String?
     admin     Admin       @relation(fields: [adminId], references: [id])
-    data      TenantData[]
     createdAt DateTime    @default(now())
 }
 
 
-model TenantData {
-    id        String   @id @default(auto()) @map("_id") @db.ObjectId
-    tenantId  String
-    tenant    Tenant   @relation(fields: [tenantId], references: [id])
-    data      String
-    createdAt DateTime @default(now())
-}

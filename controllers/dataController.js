@@ -6,17 +6,22 @@ import prisma from "../config/db.js";
 import { getCache, setCache } from '../services/cache.js';
 
 export const createData = async (req, res, next) => {
+    console.log("Incoming request Creating tenant data");
     const { data } = req.body;
 
     try {
         const tenantData = await prisma.tenantData.create({
             data: { tenantId: req.tenantId, data },
         });
-        res.status(201).json(tenantData);
+        return res.status(201).json(tenantData);
     } catch (err) {
+        console.log("Error creating tenant data", err);
+        res.status(400).json({ error: "Error creating tenant data" });
         next(err);
     }
 };
+
+
 
 export const getData = async (req, res, next) => {
     try {

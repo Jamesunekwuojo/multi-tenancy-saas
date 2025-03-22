@@ -1,5 +1,7 @@
 import express from "express";
-import { createTenant, getTenants } from "../controllers/tenantControllers.js";
+import { createTenant, getTenants, getTenantId, updateTenant, deleteTenant } from "../controllers/tenantControllers.js";
+import resolveAdmin from "../middleware/resolveAdmin.js";
+
 
 /**
  /**
@@ -33,7 +35,11 @@ import { createTenant, getTenants } from "../controllers/tenantControllers.js";
  
 
 const router = express.Router();
-router.post("/", createTenant);
+router.post("/", resolveAdmin, createTenant);
 router.get("/", getTenants);
+router.get("/:id", getTenantId);
+
+router.put("/:id", updateTenant);
+router.delete("/:id", deleteTenant);
 
 export default router;

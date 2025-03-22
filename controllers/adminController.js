@@ -1,9 +1,14 @@
 import prisma from "../config/db.js";
-
-const JWT_SECRET = process.env.JWT_SECRET;
+import dotenv from "dotenv"
+dotenv.config()
 import bcrypt from "bcryptjs";
 
 import jwt from "jsonwebtoken";
+import process from "process";
+
+
+
+const JWT_SECRET = process.env.JWT_SECRET;
 
 export const createAdmin = async (req, res, next) => {
   const { name, email, password } = req.body;
@@ -27,7 +32,7 @@ export const createAdmin = async (req, res, next) => {
     });
 
     // Generate JWT token
-    const token = jwt.sign({ adminId: admin.id }, JWT_SECRET, {
+    const token = jwt.sign({ adminId: admin.id, email:admin.email }, JWT_SECRET, {
       expiresIn: "1h",
     });
 
@@ -43,26 +48,43 @@ export const createAdmin = async (req, res, next) => {
 };
 
 export const loginAdmin = async (req, res, next) => {
+  console.log("Incoming request to login admin")
   const { email, password } = req.body;
+  console.log(req.body)
+
+  if(!email || !password) {
+    console.log("Password and Email are required")
+    res.status(400).json({error:"password and email are needed" })
+  }
+
+  
 
   try {
     const admin = await prisma.admin.findUnique({ where: { email } });
+    if(admin === 0) {
+      console.log("No admin exist")
+    }
     if (!admin) {
+      console.log("Error", )
       return res.status(400).json({ error: "Invalid credentials" });
     }
 
     const isMatch = await bcrypt.compare(password, admin.password);
 
     if (!isMatch) {
-      return res.status(400).json({ error: "Invalid credentials" });
+      console.log("Invalid credentials")
+      return res.status(400).json({ error: "password is incorrect " });
     }
 
     // Generate JWT token
-    const token = jwt.sign({ adminId: admin.id }, JWT_SECRET, {
+    const token = jwt.sign({ adminId: admin.id, email:admin.email }, JWT_SECRET, {
       expiresIn: "1h",
     });
 
-    res.json({ message: "Admin logged in successfully", token });
+
+    console.log("Admin login successful")
+
+    res.json({ message: "Admin logged in successfully", token, admin });
   } catch (err) {
     console.log(err);
     next(err);
